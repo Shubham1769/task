@@ -24,7 +24,7 @@ contract AssignmentNFT is ERC721 {
         token = AssignmentToken(token20Address);
     }
 
-    function mintNFT(address to) external {
+    function mintNFT(address to) onlyOwner {
          require(token.balanceOf(msg.sender)>1000*10**18, "You do not have enough tokens");
         _safeMint(to, tokenId);
         _token721ToToken20[tokenId] = exchangeRate;
